@@ -37,6 +37,13 @@ pipeline {
                 bat 'terraform apply tfplan'
             }
         }
+
+        stage('Terraform Destroy') {
+            steps {
+                input message: 'Do you want to destroy the Terraform infrastructure?'
+                bat 'terraform destroy'
+            }
+        }
     }
 
     post {
