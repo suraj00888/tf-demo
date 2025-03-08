@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo.git' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/RakeshRathod500/tf-demo.git' // Replace with your repo URL
             }
         }
 
