@@ -30,14 +30,21 @@ pipeline {
                 bat 'terraform plan -out=tfplan'
             }
         }
+
+        stage('Terraform Apply') {
+            steps {
+                input message: 'Do you want to apply the Terraform changes?'
+                bat 'terraform apply tfplan'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Terraform plan executed successfully!'
+            echo 'Terraform deployment executed successfully!'
         }
         failure {
-            echo 'Terraform plan failed!'
+            echo 'Terraform deployment failed!'
         }
     }
 }
