@@ -34,14 +34,15 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 input message: 'Do you want to apply the Terraform changes?'
-                bat 'terraform apply tfplan'
+                bat 'terraform apply -auto-approve tfplan'
             }
         }
 
         stage('Terraform Destroy') {
             steps {
                 input message: 'Do you want to destroy the Terraform infrastructure?'
-                bat 'terraform destroy'
+                bat 'terraform destroy -target=module.ec2.aws_instance.server -auto-approve'
+                bat 'terraform destroy -auto-approve'
             }
         }
     }
